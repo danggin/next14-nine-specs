@@ -56,17 +56,17 @@ const examplePrompt = `
 const finalPrompt = `${scoringCriteria}${examplePrompt}`;
 
 export const reportGptPrompt = async (code: string) => {
-  const sixMonthsPrice = await getStockPrice(code, "month", "NASDAQ");
-  const sixMonthsPriceString = sixMonthsPrice
-    .map(
-      (item) =>
-        `날짜: ${item.localDate}, 종가: ${item.closePrice}, 시가: ${item.openPrice}, 최고가: ${item.highPrice}, 최저가: ${item.lowPrice}, 거래량: ${item.accumulatedTradingVolume}`,
-    )
-    .join("\n");
+  const sixMonthsPrice = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/report/stockprice`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ code, periodType: "month&range=6", stockExchangeType: "NASDAQ" }),
+  });
 
   const message = `
 조회 할 주식 정보: ${code}
-최근 6개월의 주식 데이터: ${sixMonthsPriceString}
+최근 6개월의 주식 데이터: ${sixMonthsPrice}
 ${finalPrompt}
 `;
   return { system, message };

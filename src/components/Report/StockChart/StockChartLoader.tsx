@@ -17,17 +17,14 @@ interface Props {
 // 주식 차트 컴포넌트
 export default async function StockChartLoader({ code }: Props) {
   if (!code) return null;
-  const fetchData = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/report/chart`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ code }),
-      cache: "no-store",
+  const fetchData = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/report/chart`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
     },
-  );
+    body: JSON.stringify({ code }),
+    cache: "no-store",
+  });
   const allData = await fetchData.json();
 
   return <StockAreaChart allData={allData} />;

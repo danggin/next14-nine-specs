@@ -1,10 +1,10 @@
 import BodyFont from "@/common/BodyFont";
 import StockLogoImage from "../ReportCommon/StockLogoImage";
 import StockSubRate from "../ReportCommon/StockSubRate";
-import StockGptAnalysisReply from "./StockGptAnalysisReply";
 import { Suspense } from "react";
 import { getStockDetails } from "@/service/report/stockDetailsApi";
 import StockAnalysisSkeleton from "./StockAnalysisSkeleton";
+import StockGptAnalysisReply from "./StockGptAnalysisReply";
 interface StockInfo {
   ticker: string;
   name: string;

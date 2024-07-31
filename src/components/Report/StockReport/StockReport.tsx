@@ -1,4 +1,3 @@
-"use cleint";
 import type { StockReport } from "../type/report/stockType";
 import { RenderStockReport } from "./RenderStockReport";
 import { fetchReportGptReply } from "@/service/report/fetchReportGptReply";

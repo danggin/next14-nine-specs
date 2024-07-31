@@ -1,11 +1,10 @@
 import BodyFont from "@/common/BodyFont";
 import { StockInfo } from "../type/report/stockType";
-import { gptAnalysisPrompt } from "@/constants/Analysis/gptAnalysis";
+import { gptAnalysisPrompt } from "@/constants/analysisPrompt/gptAnalysis";
 
 interface Props {
   stockInfo: StockInfo | undefined;
 }
-
 export default async function StockGptAnalysisReply({ stockInfo }: Props) {
   if (!stockInfo) return null;
   const { code } = stockInfo;
