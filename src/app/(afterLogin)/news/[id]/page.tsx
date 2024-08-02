@@ -30,7 +30,7 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
     <>
       <div className="px-[120px] pt-10 pb-[70px] overflow-hidden flex gap-5 justify-center">
         <NewsDetail id={id} />
-        <RelatedList stockList={stockList} />
+        <RelatedList stockList={stockList} relatedStocks={relatedStocks} />
       </div>
     </>
   );

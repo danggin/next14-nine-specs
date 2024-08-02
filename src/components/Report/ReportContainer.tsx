@@ -19,6 +19,7 @@ interface Props {
 export default async function ReportContainer({ stockInfo }: Props) {
   if (!stockInfo) return null;
   const { code } = stockInfo;
+  const type = "stock";
   return (
     <div className=" w-[1200px] mx-auto py-12  ">
       <div className="flex flex-col flex-wrap gap-6">
@@ -44,7 +45,7 @@ export default async function ReportContainer({ stockInfo }: Props) {
           </CardWrap>
         </article>
         <Suspense fallback={<div>뉴스 로딩중...</div>}>
-          <PopularNews />
+          <PopularNews data={code} type={type} />
         </Suspense>
       </div>
     </div>

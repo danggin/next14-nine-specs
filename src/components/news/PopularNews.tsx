@@ -2,10 +2,30 @@ import { BASE_URL } from "@/constants";
 import Title from "../../app/(afterLogin)/news/_ui/Title";
 import { NewsResponse } from "@/types/news";
 import PopularNewsItem from "./PopularNewsItem";
-import { StockInfo } from "../Report/type/report/stockType";
 
-export default async function PopularNews() {
-  const news = await (await fetch(`${BASE_URL}/api/news?category=popularNews&limit=3`)).json();
+interface Props {
+  data?: any;
+  type: string;
+}
+
+export default async function PopularNews({ data = [], type }: Props) {
+  let news: NewsResponse[] = [];
+
+  if (type == "stock") {
+    news = await (
+      await fetch(`${BASE_URL}/api/news/stock`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data }),
+      })
+    ).json();
+  }
+
+  if (type == "all") {
+    news = await (await fetch(`${BASE_URL}/api/news?category=popularNews&limit=3`)).json();
+  }
 
   return (
     <>

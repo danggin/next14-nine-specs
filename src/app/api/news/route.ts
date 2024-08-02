@@ -33,11 +33,7 @@ export async function GET(request: NextRequest) {
       // limit이 지정되어 있으면 query에 limit 추가
       let articlesQuery: Query<DocumentData> = newsArticles;
       if (limitParams) {
-        articlesQuery = query(
-          newsArticles,
-          // orderBy("creationTime", "desc"),
-          limit(parseInt(limitParams, 10)),
-        );
+        articlesQuery = query(newsArticles, orderBy("creationTime", "desc"), limit(parseInt(limitParams, 10)));
       }
 
       const subCollectionSnapshot = await getDocs(articlesQuery);

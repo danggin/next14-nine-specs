@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import BodyFont from "@/common/BodyFont";
 import CardWrap from "@/common/CardWrap";
+import LOGO_LIGHT from "../../../public/images/logo/LOGO_Light.svg";
 import { getFormattedDate } from "@/service/news/setTimestampToDate";
 
 export default async function PopularNewsItem(props: any) {
@@ -18,14 +19,20 @@ export default async function PopularNewsItem(props: any) {
       >
         <Link href={`/news/${newsId}`} className="h-full block">
           <div className="h-full">
-            <Image
-              src={image}
-              width={590}
-              height={index === 0 ? 420 : 210}
-              alt=""
-              className="w-full h-full object-cover object-center"
-              priority
-            />
+            {image ? (
+              <Image
+                src={image}
+                width={590}
+                height={index === 0 ? 420 : 210}
+                alt=""
+                className="w-full h-full object-cover object-center"
+                priority
+              />
+            ) : (
+              <div className="w-full h-full flex justify-center items-center">
+                <Image src={LOGO_LIGHT} alt="아잇나우 로고" width={183} height={65} className="h-auto" />
+              </div>
+            )}
           </div>
           <div className="absolute inset-x-0 bottom-0 text-white p-6 z-1">
             <BodyFont level="1" weight="bold" className="mb-[14px]">
